@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaerisoft Tools</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animasi Background Universe -->
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1 class="logo">Xaerisoft <span>Tools</span></h1>
+        </header>
+
+        <!-- VIEW: HOME -->
+        <main id="view-home" class="view active">
+            <h2 class="section-title">Select a Tool</h2>
+            <div class="cards-grid">
+                <!-- Card 1: QR Generator -->
+                <div class="glass-card tool-card">
+                    <div class="card-icon">🧾</div>
+                    <h3>QR Generator</h3>
+                    <p>Buat QR Code untuk URL, WhatsApp, WiFi, dan banyak lagi dengan mudah.</p>
+                    <button class="btn-primary" onclick="switchView('view-qr')">Open Tool</button>
+                </div>
+                
+                <!-- Card 2: IQC iPhone -->
+                <div class="glass-card tool-card">
+                    <div class="card-icon">📱</div>
+                    <h3>IQC iPhone</h3>
+                    <p>Generator instan untuk membuat tampilan pesan iPhone yang realistis dan estetis.</p>
+                    <button class="btn-primary" onclick="switchView('view-iqc')">Open Tool</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW: QR GENERATOR -->
+        <main id="view-qr" class="view hidden">
+            <button class="btn-back" onclick="switchView('view-home')">← Back to Home</button>
+            <div class="glass-card tool-container">
+                <h2>🧾 QR Code Generator</h2>
+                <div class="qr-layout">
+                    <!-- Form Input QR (Tetap Sama) -->
+                    <div class="qr-form">
+                        <label>Pilih Tipe Data:</label>
+                        <select id="qr-type" onchange="updateQrInputFields()">
+                            <option value="url">🌐 URL / Link</option>
+                            <option value="text">📝 Text</option>
+                            <option value="whatsapp">💬 WhatsApp</option>
+                        </select>
+                        <div id="dynamic-inputs" class="input-group"></div>
+                        <div class="btn-group">
+                            <button class="btn-primary" onclick="generateQR()">Generate QR</button>
+                            <button class="btn-secondary" onclick="resetQR()">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="qr-result">
+                        <div class="qr-box" id="qr-box">
+                            <img id="qr-image" src="" alt="QR Code" style="display: none;">
+                            <span id="qr-placeholder">Preview QR Code</span>
+                        </div>
+                        <div class="download-group" id="download-group" style="display: none;">
+                            <button class="btn-download btn-png" onclick="downloadQR('png')">Download PNG</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- VIEW: IQC iPHONE GENERATOR -->
+        <main id="view-iqc" class="view hidden">
+            <button class="btn-back" onclick="switchView('view-home')">← Back to Home</button>
+            <div class="glass-card tool-container">
+                <h2>📱 IQC iPhone Generator</h2>
+                
+                <div class="iqc-layout">
+                    <!-- Form Generator -->
+                    <div class="iqc-form">
+                        <div class="input-group">
+                            <label>Provider Network:</label>
+                            <input type="text" id="iqc-provider" value="INDOSAT LTE">
+                        </div>
+                        <div class="input-group">
+                            <label>Waktu (Jam:Menit):</label>
+                            <input type="text" id="iqc-time" value="05:54">
+                        </div>
+                        <div class="input-group">
+                            <label>Persentase Baterai (%):</label>
+                            <input type="number" id="iqc-battery" value="66" min="1" max="100">
+                        </div>
+                        <div class="input-group">
+                            <label>Isi Pesan / Quote:</label>
+                            <textarea id="iqc-text" rows="5">"isi teks"</textarea>
+                        </div>
+                        
+                        <button class="btn-primary iqc-btn" onclick="generateIQC()">Generate</button>
+                    </div>
+
+                    <!-- Live Preview Mockup -->
+                    <div class="iqc-preview-container">
+                        <p id="iqc-status-text" class="status-generate">Generate Selesai!</p>
+                        
+                        <div class="iphone-mockup" id="iphone-mockup">
+                            <!-- Status Bar iOS -->
+                            <div class="ios-status-bar">
+                                <div class="ios-left">
+                                    <svg class="ios-signal" viewBox="0 0 16 16" fill="currentColor"><path d="M1 12h2v4H1v-4zm4-4h2v8H5V8zm4-4h2v12H9V4zm4-4h2v16h-2V0z"/></svg>
+                                    <span id="mock-provider">INDOSAT LTE</span>
+                                </div>
+                                <div class="ios-center" id="mock-time">05:54</div>
+                                <div class="ios-right">
+                                    <span id="mock-battery-text">66%</span> 
+                                    <div class="ios-battery-icon">
+                                        <div class="battery-level" id="mock-battery-level" style="width: 66%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Area -->
+                            <div class="ios-chat-area">
+                                <!-- Reaksi Emoji -->
+                                <div class="ios-reactions">
+                                    <span>👍</span><span>❤️</span><span>😂</span><span>😮</span><span>😢</span><span>🙏</span>
+                                </div>
+                                
+                                <!-- Bubble Chat -->
+                                <div class="ios-bubble">
+                                    <p id="mock-text">"isi teks"</p>
+                                    <span class="ios-bubble-time" id="mock-bubble-time">05:54</span>
+                                </div>
+                                
+                                <!-- Context Menu -->
+                                <div class="ios-context-menu">
+                                    <div class="ios-menu-item"><span>Beri Bintang</span><span class="icon">☆</span></div>
+                                    <div class="ios-menu-item"><span>Balas</span><span class="icon">↩</span></div>
+                                    <div class="ios-menu-item"><span>Teruskan</span><span class="icon">↪</span></div>
+                                    <div class="ios-menu-item"><span>Salin</span><span class="icon">📄</span></div>
+                                    <div class="ios-menu-item"><span>Ucapkan</span><span class="icon">💬</span></div>
+                                    <div class="ios-menu-item"><span>Laporkan</span><span class="icon">⚠</span></div>
+                                    <div class="ios-menu-item ios-danger"><span>Hapus</span><span class="icon">🗑</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

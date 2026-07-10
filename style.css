@@ -1,0 +1,194 @@
+:root {
+    --bg-dark: #050510;
+    --neon-blue: #00c3ff;
+    --neon-purple: #9d00ff;
+    --text-light: #e0e0ff;
+    --glass-bg: rgba(20, 20, 40, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+body { background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; min-height: 100vh; }
+
+/* Universe Animation */
+.stars, .twinkling { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; display: block; z-index: -1; }
+.stars { background: #000 url('https://raw.githubusercontent.com/frontendjoe/css-backgrounds/master/stars.png') repeat top center; z-index: -3; }
+.twinkling { background: transparent url('https://raw.githubusercontent.com/frontendjoe/css-backgrounds/master/twinkling.png') repeat top center; z-index: -2; animation: move-twink-back 200s linear infinite; }
+@keyframes move-twink-back { from {background-position: 0 0;} to {background-position: -10000px 5000px;} }
+
+/* Layout & Typography */
+.app-container { max-width: 1100px; margin: 0 auto; padding: 2rem; position: relative; z-index: 1; }
+header { text-align: center; margin-bottom: 3rem; }
+.logo { font-size: 3rem; font-weight: 800; background: linear-gradient(to right, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo span { font-weight: 300; -webkit-text-fill-color: #fff; }
+.section-title { text-align: center; font-weight: 400; margin-bottom: 2rem; }
+
+/* Cards & Glassmorphism */
+.glass-card { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.tool-card { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: transform 0.3s ease; }
+.tool-card:hover { transform: translateY(-5px); border-color: rgba(0, 195, 255, 0.3); }
+.card-icon { font-size: 4rem; margin-bottom: 1rem; filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.5)); }
+.tool-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+.tool-card p { font-size: 0.95rem; color: #aaa; margin-bottom: 2rem; }
+
+/* Buttons & Inputs */
+button { cursor: pointer; border: none; font-size: 1rem; font-weight: 600; border-radius: 12px; padding: 0.8rem 1.5rem; transition: all 0.3s ease; }
+.btn-primary { background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple)); color: #fff; width: 100%; }
+.btn-primary:hover { box-shadow: 0 0 15px rgba(157, 0, 255, 0.6); }
+.btn-secondary { background: transparent; color: #fff; border: 1px solid var(--glass-border); }
+.btn-back { background: transparent; color: var(--neon-blue); margin-bottom: 1rem; padding: 0; font-weight: 400; }
+.view.hidden { display: none; }
+.view.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+label { font-size: 0.9rem; color: #bbb; display: block; margin-bottom: 5px; }
+select, input, textarea { width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); color: #fff; padding: 0.8rem; border-radius: 8px; font-size: 1rem; margin-bottom: 1rem; }
+select:focus, input:focus, textarea:focus { outline: none; border-color: var(--neon-blue); }
+
+/* QR Styles... (Simplified for brevity, same as previous) */
+.qr-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.qr-box { width: 250px; height: 250px; background: rgba(255,255,255,0.05); border: 2px dashed var(--glass-border); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+.qr-box img { width: 100%; height: 100%; padding: 10px; background: #fff;}
+
+/* =========================================
+   IQC iPHONE GENERATOR STYLES
+========================================= */
+.iqc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.iqc-btn { margin-top: 1rem; font-size: 1.1rem; padding: 1rem; border-radius: 50px; }
+
+.iqc-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status-generate {
+    opacity: 0;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: opacity 0.3s;
+}
+
+.status-generate.show {
+    opacity: 1;
+}
+
+/* THE iPHONE MOCKUP */
+.iphone-mockup {
+    width: 320px;
+    height: 600px;
+    background-color: #000;
+    border-radius: 35px;
+    border: 6px solid #1a1a1a;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Native iOS Font */
+    display: flex;
+    flex-direction: column;
+}
+
+/* iOS Status Bar */
+.ios-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 5px;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 500;
+}
+.ios-left { display: flex; align-items: center; gap: 4px; }
+.ios-signal { width: 14px; height: 10px; margin-bottom: 1px; }
+.ios-center { font-weight: 600; }
+.ios-right { display: flex; align-items: center; gap: 4px; }
+.ios-battery-icon {
+    width: 22px; height: 11px; border: 1px solid rgba(255,255,255,0.5); 
+    border-radius: 3px; position: relative; padding: 1px;
+}
+.ios-battery-icon::after {
+    content: ''; position: absolute; right: -3px; top: 3px;
+    width: 2px; height: 3px; background: rgba(255,255,255,0.5); border-radius: 0 1px 1px 0;
+}
+.battery-level { height: 100%; background: #fff; border-radius: 1.5px; }
+
+/* Chat Canvas Area */
+.ios-chat-area {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Reactions */
+.ios-reactions {
+    background: #2c2c2e;
+    display: inline-flex;
+    padding: 6px 12px;
+    border-radius: 30px;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    width: fit-content;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Chat Bubble */
+.ios-bubble {
+    background: #2c2c2e;
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.4;
+    position: relative;
+    max-width: 90%;
+    margin-bottom: 15px;
+}
+.ios-bubble-time {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 5px;
+}
+
+/* Context Menu (Actions) */
+.ios-context-menu {
+    background: rgba(44, 44, 46, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 14px;
+    width: 250px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.ios-menu-item {
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    color: #fff;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+.ios-menu-item:last-child { border-bottom: none; }
+.ios-menu-item .icon { font-size: 16px; opacity: 0.8; }
+.ios-danger { color: #ff453a; }
+
+@media (max-width: 768px) {
+    .qr-layout, .iqc-layout { grid-template-columns: 1fr; }
+    .iphone-mockup { margin: 0 auto; }
+}
