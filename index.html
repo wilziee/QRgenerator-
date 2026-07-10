@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="universe">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaerisoft QR - Modern QR Code Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="space-background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="shooting-stars"></div>
+        <div class="nebula-1"></div>
+        <div class="nebula-2"></div>
+    </div>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <i data-lucide="qr-code" class="neon-icon"></i>
+                </div>
+                <div class="brand-info">
+                    <h2>Xaerisoft QR</h2>
+                    <span>Modern Generator</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <button class="menu-item active" data-target="generator-section">
+                    <i data-lucide="cpu"></i> <span>Generator</span>
+                </button>
+                <button class="menu-item" data-target="history-section">
+                    <i data-lucide="history"></i> <span>History</span>
+                </button>
+                <button class="menu-item" data-target="favorite-section">
+                    <i data-lucide="star"></i> <span>Favorites</span>
+                </button>
+                <button class="menu-item" data-target="settings-section">
+                    <i data-lucide="settings"></i> <span>Settings</span>
+                </button>
+                <button class="menu-item" data-target="about-section">
+                    <i data-lucide="info"></i> <span>About</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>© 2026 Xaerisoft</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="generator-section" class="app-section active">
+                <div class="section-layout">
+                    <div class="config-panel glass-card">
+                        <div class="input-type-selector">
+                            <button class="type-btn active" data-type="url"><i data-lucide="link"></i> URL</button>
+                            <button class="type-btn" data-type="text"><i data-lucide="align-left"></i> Text</button>
+                            <button class="type-btn" data-type="whatsapp"><i data-lucide="message-square"></i> WA</button>
+                            <button class="type-btn" data-type="phone"><i data-lucide="phone"></i> Phone</button>
+                            <button class="type-btn" data-type="email"><i data-lucide="mail"></i> Email</button>
+                            <button class="type-btn" data-type="sms"><i data-lucide="smartphone"></i> SMS</button>
+                            <button class="type-btn" data-type="wifi"><i data-lucide="wifi"></i> WiFi</button>
+                            <button class="type-btn" data-type="location"><i data-lucide="map-pin"></i> Maps</button>
+                            <button class="type-btn" data-type="clipboard"><i data-lucide="clipboard"></i> Paste</button>
+                        </div>
+
+                        <div class="dynamic-inputs-container">
+                            <div class="input-group content-input-field active" id="input-url">
+                                <label>Target URL</label>
+                                <input type="url" placeholder="https://example.com" value="https://xaerisoft.com">
+                            </div>
+                            <div class="input-group content-input-field" id="input-text">
+                                <label>Plain Text</label>
+                                <textarea placeholder="Enter your text here..."></textarea>
+                            </div>
+                            <div class="input-group content-input-field" id="input-whatsapp">
+                                <label>Phone Number (with Country Code)</label>
+                                <input type="tel" placeholder="628123456789">
+                                <label>Pre-filled Message (Optional)</label>
+                                <textarea placeholder="Hello Wilzi..."></textarea>
+                            </div>
+                            <div class="input-group content-input-field" id="input-phone">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="+62...">
+                            </div>
+                            <div class="input-group content-input-field" id="input-email">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="example@domain.com">
+                                <label>Subject</label>
+                                <input type="text" placeholder="Subject">
+                                <label>Body Message</label>
+                                <textarea placeholder="Message details..."></textarea>
+                            </div>
+                            <div class="input-group content-input-field" id="input-sms">
+                                <label>Recipient Number</label>
+                                <input type="tel" placeholder="+62...">
+                                <label>SMS Body</label>
+                                <textarea placeholder="Message content..."></textarea>
+                            </div>
+                            <div class="input-group content-input-field" id="input-wifi">
+                                <label>Network Name (SSID)</label>
+                                <input type="text" placeholder="My Home WiFi">
+                                <label>Password</label>
+                                <input type="password" placeholder="••••••••">
+                                <label>Network Encryption Type</label>
+                                <select id="wifi-encryption">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="nopass">Unencrypted (Open)</option>
+                                </select>
+                            </div>
+                            <div class="input-group content-input-field" id="input-location">
+                                <div class="grid-2col">
+                                    <div>
+                                        <label>Latitude</label>
+                                        <input type="number" step="any" placeholder="-6.2000">
+                                    </div>
+                                    <div>
+                                        <label>Longitude</label>
+                                        <input type="number" step="any" placeholder="106.8166">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="panel-divider">
+
+                        <div class="customization-panel">
+                            <h3><i data-lucide="sliders"></i> Design Customization</h3>
+                            <div class="grid-2col">
+                                <div class="input-group">
+                                    <label>QR Node Color</label>
+                                    <div class="color-picker-wrapper">
+                                        <input type="color" id="cfg-color-dark" value="#ffffff">
+                                        <input type="text" id="cfg-color-dark-txt" value="#ffffff">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Background Color</label>
+                                    <div class="color-picker-wrapper">
+                                        <input type="color" id="cfg-color-light" value="#000000">
+                                        <input type="text" id="cfg-color-light-txt" value="#000000">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-2col">
+                                <div class="input-group">
+                                    <label>Module Margin</label>
+                                    <input type="range" id="cfg-margin" min="0" max="8" value="2">
+                                </div>
+                                <div class="input-group">
+                                    <label>Resolution Scale</label>
+                                    <select id="cfg-size">
+                                        <option value="256">256 x 256 px</option>
+                                        <option value="512" selected>512 x 512 px</option>
+                                        <option value="1024">1024 x 1024 px</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid-2col">
+                                <div class="input-group">
+                                    <label>Error Correction Level</label>
+                                    <select id="cfg-error-level">
+                                        <option value="L">Low (7%)</option>
+                                        <option value="M">Medium (15%)</option>
+                                        <option value="Q">Quartile (25%)</option>
+                                        <option value="H" selected>High (30% - Best for Logos)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Center Overlay Logo</label>
+                                    <label for="cfg-logo-upload" class="custom-file-upload">
+                                        <i data-lucide="upload-cloud"></i> Choose Logo
+                                    </label>
+                                    <input type="file" id="cfg-logo-upload" accept="image/*">
+                                    <span id="logo-file-name">No logo selected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preview-panel-container">
+                        <div class="preview-card glass-card">
+                            <div class="empty-state" id="qr-empty-state">
+                                <div class="pulse-illustration">
+                                    <i data-lucide="qr-code"></i>
+                                </div>
+                                <p>Waiting for data stream input...</p>
+                            </div>
+
+                            <div class="loading-state hidden" id="qr-loading-state">
+                                <div class="cosmic-spinner"></div>
+                                <p>⚡ Generating QR...</p>
+                            </div>
+
+                            <div class="qr-canvas-holder hidden" id="qr-canvas-holder">
+                                <canvas id="qr-rendering-target"></canvas>
+                            </div>
+
+                            <div class="action-toolkit-row">
+                                <button id="btn-action-generate" class="primary-action-btn" title="Force Build (Ctrl + Enter)">
+                                    <i data-lucide="zap"></i> Generate
+                                </button>
+                                <button id="btn-action-favorite" class="secondary-action-btn" title="Add to Favorites">
+                                    <i data-lucide="star"></i>
+                                </button>
+                                <button id="btn-action-copy" class="secondary-action-btn" title="Copy Image to Clipboard" disabled>
+                                    <i data-lucide="copy"></i>
+                                </button>
+                                <button id="btn-action-share" class="secondary-action-btn" title="Share via Device APIs" disabled>
+                                    <i data-lucide="share-2"></i>
+                                </button>
+                                <button id="btn-action-reset" class="danger-action-btn" title="Reset Configurations">
+                                    <i data-lucide="rotate-ccw"></i>
+                                </button>
+                            </div>
+
+                            <div class="download-cluster disabled" id="download-cluster">
+                                <button class="dl-format-btn" data-format="png">PNG</button>
+                                <button class="dl-format-btn" data-format="jpeg">JPEG</button>
+                                <button class="dl-format-btn" data-format="svg">SVG</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history-section" class="app-section">
+                <div class="section-header-title">
+                    <h2>Generation Log History</h2>
+                    <p>Tracks your last 20 generated structural data matrix profiles locally.</p>
+                </div>
+                <div class="history-grid-container" id="history-view-grid">
+                    </div>
+            </section>
+
+            <section id="favorite-section" class="app-section">
+                <div class="section-header-title">
+                    <h2>Bookmarked Structural Codes</h2>
+                    <p>Quick access array containing items you tagged as important.</p>
+                </div>
+                <div class="history-grid-container" id="favorite-view-grid">
+                    </div>
+            </section>
+
+            <section id="settings-section" class="app-section">
+                <div class="section-header-title">
+                    <h2>System Space Configuration</h2>
+                    <p>Modify UI styling properties and particle field core themes.</p>
+                </div>
+                <div class="settings-grid glass-card">
+                    <div class="setting-item-row">
+                        <div class="setting-meta-text">
+                            <h4>Active Nebular Interface Theme</h4>
+                            <p>Switches visual environment filters, accent illumination nodes, and color palettes.</p>
+                        </div>
+                        <div class="theme-selection-palette">
+                            <button class="theme-node universe-theme active" data-set-theme="universe">
+                                <span class="dot"></span> Universe
+                            </button>
+                            <button class="theme-node purple-theme" data-set-theme="purple">
+                                <span class="dot"></span> Cyber Purple
+                            </button>
+                            <button class="theme-node blue-theme" data-set-theme="blue">
+                                <span class="dot"></span> Deep Blue
+                            </button>
+                            <button class="theme-node aurora-theme" data-set-theme="aurora">
+                                <span class="dot"></span> Aurora Borealis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-section" class="app-section">
+                <div class="about-card glass-card">
+                    <div class="about-logo-backdrop">
+                        <i data-lucide="box" class="floating-box-logo"></i>
+                    </div>
+                    <h3>Xaerisoft QR</h3>
+                    <p class="app-version-tag">Version 2.4.0-Stable Production</p>
+                    <p class="about-description">
+                        An advanced, fully client-side cryptographic and data visualization tool designed for instantaneous 
+                        matrix generation. Built purely on standard reactive browser layers ensuring zero analytical tracking footprints.
+                    </p>
+                    <div class="attribution-badge-layout">
+                        <div class="dev-badge">
+                            <span>Architected By</span>
+                            <strong>Wilzi</strong>
+                        </div>
+                        <div class="dev-badge">
+                            <span>Powered Infrastructure By</span>
+                            <strong>Xaerisoft Lab Engineering</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="toast-notification-pipeline" id="toast-pipeline"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
