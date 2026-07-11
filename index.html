@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaerisoft QR | Modern QR Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="universe-bg">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="particles"></div>
+        <div class="shooting-stars-container"></div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <div class="glass-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-qrcode fa-2x"></i>
+            </div>
+            <h1>Xaerisoft QR</h1>
+            <p>Simple • Fast • Modern QR Generator</p>
+        </header>
+
+        <main>
+            <div class="panel input-panel">
+                <div class="form-group">
+                    <label for="qr-type">Jenis QR Code</label>
+                    <div class="select-wrapper">
+                        <select id="qr-type">
+                            <option value="url">🌐 URL / Website</option>
+                            <option value="text">📝 Teks Biasa</option>
+                            <option value="whatsapp">💬 WhatsApp</option>
+                            <option value="phone">📞 Nomor Telepon</option>
+                            <option value="email">✉️ Email</option>
+                            <option value="sms">📱 SMS</option>
+                            <option value="wifi">📶 WiFi</option>
+                            <option value="location">📍 Lokasi (Koordinat)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="dynamic-inputs">
+                    <div class="input-group active" id="group-url">
+                        <input type="url" id="inp-url" placeholder="https://example.com" required>
+                    </div>
+                    
+                    <div class="input-group" id="group-text">
+                        <textarea id="inp-text" rows="4" placeholder="Ketik teks di sini..."></textarea>
+                    </div>
+
+                    <div class="input-group" id="group-whatsapp">
+                        <input type="tel" id="inp-wa-phone" placeholder="Nomor (Misal: 62812...)" required>
+                        <textarea id="inp-wa-msg" rows="3" placeholder="Pesan otomatis (opsional)"></textarea>
+                    </div>
+
+                    <div class="input-group" id="group-phone">
+                        <input type="tel" id="inp-phone" placeholder="Nomor Telepon" required>
+                    </div>
+
+                    <div class="input-group" id="group-email">
+                        <input type="email" id="inp-email" placeholder="Alamat Email" required>
+                        <input type="text" id="inp-email-sub" placeholder="Subjek (opsional)">
+                        <textarea id="inp-email-msg" rows="3" placeholder="Pesan (opsional)"></textarea>
+                    </div>
+
+                    <div class="input-group" id="group-sms">
+                        <input type="tel" id="inp-sms-phone" placeholder="Nomor Telepon" required>
+                        <textarea id="inp-sms-msg" rows="3" placeholder="Pesan SMS (opsional)"></textarea>
+                    </div>
+
+                    <div class="input-group" id="group-wifi">
+                        <input type="text" id="inp-wifi-ssid" placeholder="Nama WiFi (SSID)" required>
+                        <input type="password" id="inp-wifi-pass" placeholder="Password">
+                        <select id="inp-wifi-type">
+                            <option value="WPA">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="nopass">Tanpa Password</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" id="group-location">
+                        <input type="text" id="inp-loc-lat" placeholder="Latitude (Misal: -6.200000)" required>
+                        <input type="text" id="inp-loc-lng" placeholder="Longitude (Misal: 106.816666)" required>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="btn-generate" class="btn-gradient">Generate QR <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                    <button id="btn-reset" class="btn-outline">Reset <i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+            </div>
+
+            <div class="panel preview-panel">
+                <div class="qr-box">
+                    <div id="loading" class="hidden">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i>
+                        <p>⚡ Generating QR...</p>
+                    </div>
+                    <div id="qr-preview-container" class="hidden">
+                        <canvas id="qr-canvas"></canvas>
+                    </div>
+                    <div id="qr-placeholder">
+                        <i class="fa-solid fa-qrcode"></i>
+                        <p>Preview QR Code</p>
+                    </div>
+                </div>
+
+                <div id="download-actions" class="hidden">
+                    <button id="btn-dl-png" class="btn-gradient">Download PNG <i class="fa-solid fa-image"></i></button>
+                    <button id="btn-dl-svg" class="btn-gradient">Download SVG <i class="fa-solid fa-vector-square"></i></button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by <strong>Wilzi</strong> | Powered by <strong>Xaerisoft</strong></p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
